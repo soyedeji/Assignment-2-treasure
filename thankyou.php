@@ -101,60 +101,54 @@ function validate_input() {
 <body>
     <!-- Remember that alternative syntax is good and html inside php is bad -->
     <?php if(!validate_input()):?>
-    <div class="invoice">
-  <h2>Thanks for your order <?= $_POST['fullname'] ?></h2>
-  <h3>Here's a summary of your order:</h3>
-  <table>
-    <tbody>
-    <tr>
-      <td colspan="4"><h3>Address Information</h3>
-      </td>
-    </tr>
-    <tr>
-      <td class="alignright"><span class="bold">Address:</span>
-      </td>
-      <td> <?= $_POST['address'] ?> </td>
-      <td class="alignright"><span class="bold">City:</span>
-      </td>
-      <td> <?= $_POST['city'] ?> </td>
-    </tr>
-    <tr>
-      <td class="alignright"><span class="bold">Province:</span>
-      </td>
-      <td> <?= $_POST['province'] ?></td>
-      <td class="alignright"><span class="bold">Postal Code:</span>
-      </td>
-      <td> <?= $_POST['postal'] ?> </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="alignright"><span class="bold">Email:</span>
-      </td>
-      <td colspan="2"> <?= $_POST['email'] ?> </td>
-    </tr>
-    </tbody>
-  </table>
-  
-  <table>
-    <tbody>
-    <?php 
-    for($i = 1; $i <= 5; $i++){
-        $quantity = $_POST["qty$i"];
-        if($quantity > 0) {
-            $description = $items[$i - 1]["name"];
-            $cost = $items[$i - 1]["price"] * $quantity;
+        <div class="invoice">
+            <h2>Thanks for your order <?= $_POST['fullname'] ?></h2>
+            <h3>Here's a summary of your order:</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td colspan="4"><h3>Address Information</h3></td>
+                    </tr>
+                    <tr>
+                        <td class="alignright"><span class="bold">Address:</span></td>
+                    <td> <?= $_POST['address'] ?> </td>
+                        <td class="alignright"><span class="bold">City:</span></td>
+                    <td> <?= $_POST['city'] ?> </td>
+                    </tr>
+                    <tr>
+                        <td class="alignright"><span class="bold">Province:</span></td>
+                    <td> <?= $_POST['province'] ?></td>
+                        <td class="alignright"><span class="bold">Postal Code:</span></td>
+                        <td> <?= $_POST['postal'] ?> </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="alignright"><span class="bold">Email:</span></td>
+                        <td colspan="2"> <?= $_POST['email'] ?> </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <table>
+                <tbody>
+                <?php 
+                    for($i = 1; $i <= 5; $i++){
+                        $quantity = $_POST["qty$i"];
+                        if($quantity > 0) {
+                            $description = $items[$i - 1]["name"];
+                            $cost = $items[$i - 1]["price"] * $quantity;
 
-            $output = "<tr>
-                        <td>$quantity</td>
-                        <td>$description</td>
-                        <td>$cost</td>
-                    </tr>";
-            echo $output;
-        }
-    }
-?>
-    </tbody>
-  </table>
-  </div>
+                            $output = "<tr>
+                                        <td>$quantity</td>
+                                        <td>$description</td>
+                                        <td>$cost</td>
+                                    </tr>";
+                            echo $output;
+                        }
+                    }
+                ?>
+                </tbody>
+            </table>
+        </div>
     <?php else:?>
         <h2> Error</h2>
     <?php endif ?>
